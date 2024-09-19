@@ -1,8 +1,8 @@
 import express from 'express';
-import db from './config/db';
-import usersRoutes from './routes/userRoutes';
-import carsRoutes from './routes/carRoutes';
-import auctionsRoutes from './routes/auctionRoutes';
+import db from './src/config/db';
+import usersRoutes from './src/routes/userRoutes';
+import carsRoutes from './src/routes/carRoutes';
+import auctionsRoutes from './src/routes/auctionRoutes';
 
 const app = express();
 app.use(express.json());

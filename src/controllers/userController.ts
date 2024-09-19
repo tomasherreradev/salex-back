@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import db from '../../config/db';
-import { User } from '../models/userModel';
+import db from '../config/db';
+import { User } from '../models/userModel'
 import { ResultSetHeader } from 'mysql2';
 
 // Obtener todos los usuarios

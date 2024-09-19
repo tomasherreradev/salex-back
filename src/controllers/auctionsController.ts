@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import db from '../config/db';
+import db from '../config/db'
 import { Auction } from '../models/auctionModel';
 import { ResultSetHeader } from 'mysql2';
 
