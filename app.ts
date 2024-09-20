@@ -1,11 +1,15 @@
 import express from 'express';
+import cors from 'cors';
 import db from './src/config/db';
 import usersRoutes from './src/routes/userRoutes';
 import carsRoutes from './src/routes/carRoutes';
 import auctionsRoutes from './src/routes/auctionRoutes';
+import dotenv from 'dotenv';
 
 const app = express();
+app.use(cors());
 app.use(express.json());
+dotenv.config();
 
 // Usar las rutas
 app.use('/users', usersRoutes);
