@@ -1,7 +1,8 @@
 import {Router} from 'express';
 
-import { getAllUsers, createUser, forgotPassword, confirmAccount, loginUser } from '../controllers/userController';
+import { getAllUsers, createUser, forgotPassword, confirmAccount, loginUser, getUserData } from '../controllers/userController';
 import { resetPassword } from '../controllers/resetPassword';
+import { authMiddleware } from '../middlewares/AuthMiddleware';
 
 const router = Router();
 
@@ -22,6 +23,9 @@ router.post('/reset-password', resetPassword);
 
 //iniciar sesion
 router.post('/login', loginUser);
+
+//obtener datos del usuario autenticado
+router.get('/me', authMiddleware, getUserData)
 
 
 

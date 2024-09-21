@@ -148,8 +148,8 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
     }
 
     const user = results[0];
-
     const isPasswordValid = await bcrypt.compare(password, user.password);
+
     if (!isPasswordValid) {
       res.status(401).json({ error: 'Credenciales inválidas' });
       return;
@@ -157,7 +157,20 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
 
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET as string, { expiresIn: '24h' });
     
-    res.json({ message: 'Inicio de sesión exitoso', token });
+    // Enviar el token y los datos relevantes del usuario
+    res.json({ 
+      message: 'Inicio de sesión exitoso',
+      token,
+      user: {
+        nombre: user.nombre,
+        email: user.email,
+        telefono: user.telefono,
+        documento: user.documento,
+        categoria: user.categoria,
+        suscripcion_activa: user.suscripcion_activa,
+        confirmada: user.confirmada,
+      }
+    });
   });
 };
 
@@ -217,5 +230,37 @@ export const forgotPassword = async (req: Request, res: Response): Promise<void>
       console.error('Error al enviar el correo:', error);
       res.status(500).json({ error: 'Error al enviar el correo de recuperación' });
     }
+  });
+};
+
+
+// Obtener datos del usuario loggeado
+export const getUserData = async (req: any, res: any): Promise<void> => {
+  const userId = req.user.userId;
+
+  const sql = 'SELECT * FROM users WHERE id = ?';
+
+  db.query(sql, [userId], (err, results: RowDataPacket[]) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Usuario no encontrado' });
+      return;
+    }
+
+    const user = results[0];
+    res.json({
+      id: user.id,
+      nombre: user.nombre,
+      email: user.email,
+      telefono: user.telefono,
+      documento: user.documento,
+      categoria: user.categoria,
+      suscripcion_activa: user.suscripcion_activa,
+      confirmada: user.confirmada
+    });
   });
 };
