@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import db from '../config/db';
+import db from '../../config/db';
 
 // Controlador para cambiar la contraseña
 export const resetPassword = async (req: Request, res: Response): Promise<void> => {

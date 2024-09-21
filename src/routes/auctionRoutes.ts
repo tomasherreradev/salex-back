@@ -1,5 +1,7 @@
 import { Router } from 'express';
-import { getAllAuctions, createAuction } from '../controllers/auctionsController';
+
+import { getAllAuctions } from '../controllers/auctionControllers/getAllAuctions';
+import { createAuction } from '../controllers/auctionControllers/createAuction';
 
 const router = Router();
 
