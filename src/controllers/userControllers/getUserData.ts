@@ -19,16 +19,10 @@ export const getUserData = async (req: any, res: any): Promise<void> => {
       }
   
       const user = results[0];
-      res.json({
-        id: user.id,
-        nombre: user.nombre,
-        email: user.email,
-        telefono: user.telefono,
-        documento: user.documento,
-        categoria: user.categoria,
-        suscripcion_activa: user.suscripcion_activa,
-        confirmada: user.confirmada
-      });
+   
+      res.json(
+        console.log(user)
+      );
     });
   };
   

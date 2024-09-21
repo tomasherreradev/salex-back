@@ -5,6 +5,7 @@ import usersRoutes from './src/routes/userRoutes';
 import carsRoutes from './src/routes/carRoutes';
 import auctionsRoutes from './src/routes/auctionRoutes';
 import dotenv from 'dotenv';
+import path from 'path';
 
 const app = express();
 app.use(cors());
@@ -15,6 +16,7 @@ dotenv.config();
 app.use('/users', usersRoutes);
 app.use('/cars', carsRoutes);
 app.use('/auctions', auctionsRoutes);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const PORT = process.env.PORT || 5000;
 

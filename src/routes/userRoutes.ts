@@ -10,6 +10,7 @@ import { updateUser } from '../controllers/userControllers/updateUser';
 
 import { resetPassword } from '../controllers/userControllers/resetPassword';
 import { authMiddleware } from '../middlewares/AuthMiddleware';
+import upload from '../middlewares/MulterConfig';
 
 const router = Router();
 
@@ -33,7 +34,7 @@ router.post('/login', loginUser);
 
 //obtener datos del usuario autenticado
 router.get('/me', authMiddleware, getUserData);
-router.put('/update-user', authMiddleware, updateUser);
+router.put('/update-user', authMiddleware, upload.single('profileImage'), updateUser);
 
 
 

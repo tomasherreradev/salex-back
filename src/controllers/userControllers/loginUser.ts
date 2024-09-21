@@ -54,6 +54,7 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
           categoria: user.categoria,
           suscripcion_activa: user.suscripcion_activa,
           confirmada: user.confirmada,
+          foto: user.foto
         }
       });
     });
