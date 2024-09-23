@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import db from '../config/db';
+import db from '../db';
 import { RowDataPacket } from 'mysql2';
 
 interface User extends RowDataPacket {

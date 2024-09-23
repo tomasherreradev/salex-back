@@ -1,21 +1,36 @@
 import multer from 'multer';
 import path from 'path';
+import fs from 'fs';
 
-// Configuración de almacenamiento para multer
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads/'); // Ruta donde se guardarán las imágenes
+        
+        let uploadPath = 'uploads/'; 
+        
+        if (req.baseUrl.includes('cars')) {
+            uploadPath = 'uploads/cars/';
+        } else if (req.baseUrl.includes('users')) {
+            uploadPath = 'uploads/users/';
+        }
+
+        
+        if (!fs.existsSync(uploadPath)) {
+            fs.mkdirSync(uploadPath, { recursive: true });
+        }
+
+        cb(null, uploadPath);
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname)); // Nombre único del archivo
+        cb(null, Date.now() + path.extname(file.originalname)); 
     },
 });
 
-// Crear la instancia de multer
+
 const upload = multer({
     storage,
     fileFilter: (req, file, cb) => {
-        // Solo permitir imágenes
+        
         const filetypes = /jpeg|jpg|png|gif|webp/;
         const mimetype = filetypes.test(file.mimetype);
         const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
@@ -28,5 +43,4 @@ const upload = multer({
     },
 });
 
-// Exportar la configuración de multer
 export default upload;

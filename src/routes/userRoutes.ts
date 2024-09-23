@@ -9,8 +9,8 @@ import { getUserData } from '../controllers/userControllers/getUserData';
 import { updateUser } from '../controllers/userControllers/updateUser';
 
 import { resetPassword } from '../controllers/userControllers/resetPassword';
-import { authMiddleware } from '../middlewares/AuthMiddleware';
-import upload from '../middlewares/MulterConfig';
+import { authMiddleware } from '../config/middlewares/authMiddleware';
+import upload from '../config/middlewares/MulterConfig';
 
 const router = Router();
 

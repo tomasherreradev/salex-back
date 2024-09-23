@@ -6,7 +6,7 @@ import bcrypt from 'bcrypt';
 export const updateUser = async (req: any, res: Response): Promise<void> => {
     const { nombre, email, oldPassword, newPassword, repeatPassword, documento } = req.body;
     const userId = req.user.userId;
-    const profileImage = req.file ? `/uploads/${req.file.filename}` : null; // Obtén el path de la imagen
+    const profileImage = req.file ? `/uploads/users/${req.file.filename}` : null; // Obtén el path de la imagen
 
     // Comprobar que newPassword y repeatPassword sean iguales
     if (newPassword && newPassword !== repeatPassword) {

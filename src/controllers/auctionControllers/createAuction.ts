@@ -12,6 +12,7 @@ export const createAuction = (req: Request, res: Response): void => {
   db.query(sql, [auto_id, precio_inicial, puja_minima, fecha_inicio, fecha_fin], (err, result: ResultSetHeader) => {
     if (err) {
       res.status(500).json({ error: err.message });
+      console.log(err.message)
       return;
     }
     res.json({ message: 'Subasta creada', auctionId: result.insertId });
