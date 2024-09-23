@@ -33,7 +33,7 @@ router.post('/reset-password', resetPassword);
 router.post('/login', loginUser);
 
 //obtener datos del usuario autenticado
-router.get('/me', authMiddleware, getUserData);
+// router.get('/me', authMiddleware, getUserData);
 router.put('/update-user', authMiddleware, upload.single('profileImage'), updateUser);
 
 
