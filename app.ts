@@ -18,7 +18,7 @@ app.use('/cars', carsRoutes);
 app.use('/auctions', auctionsRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
