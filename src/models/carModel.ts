@@ -7,5 +7,6 @@ export interface Car {
     kilometraje: number;
     foto?: string;
     notas?: string;
+    foto_principal?: string
   }
   

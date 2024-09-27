@@ -19,10 +19,10 @@ router.get('/get-all', getAllCars);
 router.get('/get/:id', getCarById)
 
 // Crear un nuevo auto
-router.post('/create-new', isAdmin, upload.single('foto'), createCar);
+router.post('/create-new', isAdmin, upload.array('fotos', 5), createCar);
 
 // Editar un vehiculo
-router.put('/update/:id', isAdmin, upload.single('foto'), updateCar);
+router.put('/update/:id', isAdmin, upload.array('fotos', 5), updateCar);
 
 // Eliminar auto
 router.delete('/delete/:id', isAdmin, deleteCar);

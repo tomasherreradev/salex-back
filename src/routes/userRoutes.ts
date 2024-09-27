@@ -8,7 +8,6 @@ import { confirmAccount } from '../controllers/userControllers/confirmAcount';
 import { loginUser } from '../controllers/userControllers/loginUser';
 import { updateUser } from '../controllers/userControllers/updateUser';
 import { deleteUser } from '../controllers/userControllers/deleteUser';
-import { updateUserByAdmin } from '../controllers/userControllers/updateUserByAdmin';
 
 
 import { resetPassword } from '../controllers/userControllers/resetPassword';
@@ -44,7 +43,6 @@ router.put('/update-user', authMiddleware, upload.single('profileImage'), update
 // exclusivo del admin
 // Eliminar usuario
 router.delete('/delete/:id', isAdmin, deleteUser);
-router.put('/update-user/:id', isAdmin, upload.single('profileImage'), updateUserByAdmin);
 
 
 

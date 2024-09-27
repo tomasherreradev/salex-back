@@ -4,6 +4,7 @@ import db from './src/config/db';
 import usersRoutes from './src/routes/userRoutes';
 import carsRoutes from './src/routes/carRoutes';
 import auctionsRoutes from './src/routes/auctionRoutes';
+import adminRoutes from './src/routes/adminRoutes';
 import dotenv from 'dotenv';
 import path from 'path';
 
@@ -16,6 +17,7 @@ dotenv.config();
 app.use('/users', usersRoutes);
 app.use('/cars', carsRoutes);
 app.use('/auctions', auctionsRoutes);
+app.use('/admin', adminRoutes)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const PORT = process.env.PORT || 5000;
