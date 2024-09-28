@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import db from '../../config/db';
 import { Auction } from '../../models/auctionModel';
 
-// Obtener todas las subastas con los detalles del auto
+// Obtener todas las subastas con los detalles del auto y una foto
 export const getAllAuctions = (req: Request, res: Response): void => {
   const sql = `
     SELECT 
@@ -19,7 +19,13 @@ export const getAllAuctions = (req: Request, res: Response): void => {
       autos.year,
       autos.foto,
       autos.kilometraje,
-      autos.estado_actual
+      autos.estado_actual,
+      (
+        SELECT fotos_autos.foto 
+        FROM fotos_autos 
+        WHERE fotos_autos.auto_id = autos.id 
+        LIMIT 1
+      ) AS foto_auto
     FROM subastas
     JOIN autos ON subastas.auto_id = autos.id
   `;
